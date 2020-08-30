@@ -14,7 +14,9 @@ export class ServersComponent implements OnInit {
   serverCreationStatus = 'No server was created!';
   serverName = 'TestServer'; //for twoway binding we will see this value in the text box i.e. TS to UI behavior
   serverCreated = false;
-  servers = ['Testserver', 'Testserver 2']
+  servers = ['Testserver', 'Testserver 2'];
+  logs = [];
+  toggle = false;
 
   userName = '';
 
@@ -48,6 +50,11 @@ export class ServersComponent implements OnInit {
     if(this.userName === '' || this.userName === undefined)
       return true;
     return false;
+  }
+
+  toggleDisplay(){
+    this.toggle = !this.toggle;
+    this.logs.push(new Date());
   }
 
 }

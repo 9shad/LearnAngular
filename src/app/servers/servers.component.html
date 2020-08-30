@@ -64,4 +64,16 @@
     [disabled] = "userName === ''"
     (click)="userName = ''">Reset User</button>-->    
 
-<app-server  *ngFor="let server of servers; let index = index"></app-server>
+<app-server  *ngFor="let server of servers"></app-server>
+
+<!--Assignment 3-->
+<button
+    class="btn btn-primary"
+    (click)="toggleDisplay()">Display Details</button>
+
+<p [hidden]="logs.length%2 === 0">Secret Password = Tune</p>
+<p *ngIf="toggle">Secret Password = Tune</p>
+<p *ngFor="let log of logs; let index=index"
+    [ngStyle] = "{backgroundColor: index >= 4 ? 'blue' : 'transparant'}"
+    [ngClass] = "{'font': index >= 4}"
+>{{log}}</p>
