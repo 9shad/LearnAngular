@@ -1,0 +1,67 @@
+<label>Server Name</label>
+<!--Event binding works from UI to ts but not vice versa-->
+<input
+    type="text"
+    class="form-control"
+    (input)="onUpdateServerName($event)"   
+> <!-- (input) is fired at every key stroke and holds the data which is typed which can be accessed by $event variable-->
+
+<!--Two way binding-->
+<!--
+    -it will trigger input event and update serverName from UI to ts
+    -it will also updated input text box value if we update serverName somewere in the code from ts to UI
+-->
+<input
+    type="text"
+    class="form-control"
+    [(ngModel)]="serverName"   
+>
+<!--<p>{{serverName}}</p>-->
+
+<button 
+    class="btn btn-primary" 
+    [disabled]="!allowNewServer" 
+    (click)="onCreateServer()">Add Server</button>
+     <!-- (click) is provided by DOM and fired when we click button and holds the co-ordinates of click in $event variable -->
+
+<!-- an example of how we can interchange string interpolation with property binding but we should not interchange the usage and keep it straight fwd
+<p>{{allowNewServer}}</p>
+<p [innerText]="allowNewServer"></p>--> <!--we can use string interpolation instead-->  
+
+<!--<p>{{serverCreationStatus}}</p>--> <!--With string interpolation element will be hidden until it gets a value, with directive element ngif is added when the value is changed as per the logic we write-->
+<!--Using directive to display server name
+    structural directive either add the element to dom or not
+    expression must evaluate to true or false
+    * is needed for ngIf to work
+    expression can be a method/variable/code evaluating to true or false
+-->
+<p *ngIf="serverCreated">Server was created, Server name is {{serverName}}</p>
+<!-- we can achieve if-else using a marker approach or !serverCreated approach
+<p *ngIf="serverCreated; else noServer">Server was created, Server name is {{serverName}}</p>
+<ng-template #noServer>
+    <p>No server was created</p>
+</ng-template>   
+-->
+
+
+
+
+<!--assignment 2-->
+<input
+    type="text"
+    class="form-control"
+    [(ngModel)]="userName"
+>
+<p>{{userName}}</p>
+<button
+    class="btn btn-primary"
+    [disabled] = "IsUserEmpty()"
+    (click)="onUserReset()">Reset User</button>
+
+<!--Another approach-->
+<!--<button
+    class="btn btn-primary"
+    [disabled] = "userName === ''"
+    (click)="userName = ''">Reset User</button>-->    
+
+<app-server  *ngFor="let server of servers; let index = index"></app-server>

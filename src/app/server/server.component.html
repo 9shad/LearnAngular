@@ -1,0 +1,29 @@
+<!--we are binding to a property of a directive ngStyle and [] is not part of directive-->
+<p [ngStyle] = "{backgroundColor: getColor()}"
+   [ngClass] = "{online: serverStatus === 'online'}"
+>
+      {{'Server'}} with ID {{ serverId }} is {{ getServerStatus() }}
+</p>
+<!--  {{}} -> string interpolation, any expression that evaluates to string can be used in this operation
+            we cannot write multi line operation, cannot use looping control or decision block except ternary expression
+            number can be easily converted to string thats why server id works with out any issue
+
+
+      property binding ->    we use [html-element-property]="expression/method() which returns a type similar to html-element-property" for property binding 
+      
+      event binding -> we use (nameOfEvent)="method()/code" , event name would be without "on"
+      - We can bind to all properties and event - good idea is to use console.log() the element to see which properties and event it offers
+      - google your_element properties/events to see which u can bind
+      - $event variable can be used to pass the event info to ts
+
+      {{}} vs property binding
+      - print something then use string interpolation
+      - change any property of html element or directive use property binding
+      -don't mix or interchange these two
+
+      TwoWayBinding
+      -we need to enable ngModel directive in order for it to work
+      -This is done by adding the FormsModule to the imports[] array in the AppModule
+      -We also need to import from @angular/forms in app.module.ts
+      -we combine property binding and event binding together i.e. [(ngModel)]="propertyName from ts class"
+-->
